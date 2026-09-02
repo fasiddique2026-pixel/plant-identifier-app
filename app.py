@@ -27,7 +27,7 @@ if uploaded_file is not None:
       "Identify & Analyze", type="primary", use_container_width=True
   )
 
-if analyze_btn:
+    if analyze_btn:
     with st.spinner("Analyzing plant details..."):
         try:
             buffered = BytesIO()
