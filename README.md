@@ -1,0 +1,1 @@
+Powered by advanced AI vision, this web app instantly identifies plant species and evaluates plant health from a single photo. Get clear condition ratings, disease diagnoses, and customized care recommendations instantly—no botanical expertise required.
