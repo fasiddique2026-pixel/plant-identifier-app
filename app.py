@@ -52,7 +52,7 @@ if analyze_btn:
 
             client = Groq(api_key=GROQ_API_KEY)
             response = client.chat.completions.create(
-                model="qwen/qwen3.6-27b"
+                model="qwen/qwen3.6-27b",
                 response_format={"type": "json_object"},
                 messages=[
                     {"role": "system", "content": system_prompt},
