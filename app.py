@@ -81,6 +81,15 @@ if uploaded_file is not None:
                 st.write(f"**Scientific Name:** {plant_data.get('scientific_name', 'N/A')}")
                 st.write(f"**Health Status:** {plant_data.get('health_status', 'N/A')}")
                 st.info(f"**Care & Diagnosis:** {plant_data.get('diagnosis', 'N/A')}")
+                raw_json = response.choices[0].message.content
+                plant_data = json.loads(raw_json)
 
+                st.subheader(f"🌱 {plant_data.get('english_name', 'Unknown Plant')}")
+                st.write(f"**Scientific Name:** {plant_data.get('scientific_name', 'N/A')}")
+                st.write(f"**Health Status:** {plant_data.get('health_status', 'N/A')}")
+                st.info(f"**Care & Diagnosis:** {plant_data.get('diagnosis', 'N/A')}")
+
+                # Add it right here at the bottom of the success block
+                st.session_state.scan_count += 1
             except Exception as e:
                 st.error(f"Error processing image: {e}")
