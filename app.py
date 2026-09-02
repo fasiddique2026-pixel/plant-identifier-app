@@ -41,21 +41,31 @@ if uploaded_file is not None:
             "diagnosis": "Single short sentence health note or treatment"
         }
         Do not write internal thinking, prose, or plain key-value text.
-        """
+"""
 
-        client = Groq(api_key=GROQ_API_KEY)
-        response = client.chat.completions.create(
-            model="qwen/qwen3.6-27b",
-            response_format={"type": "json_object"},
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "text",
-                            "text": (
-                                "Analyze this plant and produce the requested"
+            client = Groq(api_key=GROQ_API_KEY)
+            response = client.chat.completions.create(
+                model="llama-3.2-11b-vision-preview",
+                response_format={"type": "json_object"},
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {
+                        "role": "user",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Analyze this plant and produce the requested JSON.",
+                            },
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{img_b64}"
+                                },
+                            },
+                        ],
+                    },
+                ],
+            )
                                 " JSON."
                             ),
                         },
