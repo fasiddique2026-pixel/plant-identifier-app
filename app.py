@@ -6,6 +6,14 @@ from groq import Groq
 from PIL import Image
 import streamlit as st
 
+
+# Initialize session state right here
+if "scan_count" not in st.session_state:
+    st.session_state.scan_count = 0
+
+MAX_FREE_SCANS = 5
+
+st.set_page_config(page_title="🌱 Plant Identifier AI", layout="centered")
 st.set_page_config(page_title="🌿 Plant Identifier AI", layout="centered")
 st.title("🌿 Quick Plant Identifier")
 
