@@ -23,12 +23,12 @@ uploaded_file = st.file_uploader(
 if uploaded_file is not None:
   image = Image.open(uploaded_file)
   st.image(image, use_container_width=True)
-  analyze_btn = st.button(
+    analyze_btn = st.button(
       "Identify & Analyze", type="primary", use_container_width=True
   )
 
     if analyze_btn:
-    with st.spinner("Analyzing plant details..."):
+        with st.spinner("Analyzing plant details..."):
         try:
             buffered = BytesIO()
             image.save(buffered, format="JPEG")
