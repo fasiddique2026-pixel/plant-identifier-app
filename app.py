@@ -27,29 +27,21 @@ if uploaded_file is not None:
       "Identify & Analyze", type="primary", use_container_width=True
   )
 
-  if analyze_btn:
-    with st.spinner("Analyzing plant details..."):
-      try:
-        buffered = BytesIO()
-        image.save(buffered, format="JPEG")
-        img_b64 = base64.b64encode(buffered.getvalue()).decode("utf-8")
-
-        system_prompt = (
-            "You are a botanical API. You MUST return ONLY a JSON object"
-            " matching this schema:\n"
-            "{\n"
-            '  "english_name": "Single short sentence common name",\n'
-            '  "scientific_name": "Single short sentence botanical name",\n'
-            '  "health_status": "HEALTHY or STRESSED or DISEASED",\n'
-            '  "light": "Single short sentence light preference",\n'
-            '  "temp": "Single short sentence temperature range",\n'
-            '  "soil": "Single short sentence soil type",\n'
-            '  "analysis": "Single short sentence visual description",\n'
-            '  "location": "Single short sentence placement recommendation",\n'
-            '  "diagnosis": "Single short sentence health note or treatment"\n'
-            "}\n"
-            "Do not write internal thinking, prose, or plain key-value text."
-        )
+  prompt = """
+        You are a botanical API. You MUST return ONLY a valid JSON object matching this exact schema:
+        {
+            "english_name": "Single short sentence common name",
+            "scientific_name": "Single short sentence botanical name",
+            "health_status": "HEALTHY or STRESSED or DISEASED",
+            "light": "Single short sentence light preference",
+            "temp": "Single short sentence temperature range",
+            "soil": "Single short sentence soil type",
+            "analysis": "Single short sentence visual description",
+            "location": "Single short sentence placement recommendation",
+            "diagnosis": "Single short sentence health note or treatment"
+        }
+        Do not write internal thinking, prose, or plain key-value text.
+        """
 
         client = Groq(api_key=GROQ_API_KEY)
         response = client.chat.completions.create(
