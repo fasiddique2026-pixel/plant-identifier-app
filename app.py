@@ -5,7 +5,13 @@ from io import BytesIO
 from groq import Groq
 from PIL import Image
 import streamlit as st
-
+st.markdown("""
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    </style>
+""", unsafe_allow_html=True)
 
 # Initialize session state right here
 if "scan_count" not in st.session_state:
