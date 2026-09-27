@@ -8,7 +8,7 @@ import streamlit as st
 st.markdown("""
     <style>
     #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
+    footer {visibility: hidden; display: none !important;}
     header {visibility: hidden;}
     </style>
 """, unsafe_allow_html=True)
